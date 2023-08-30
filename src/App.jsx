@@ -10,8 +10,12 @@ function App() {
       </header>
 
       <section>
-        <AddTask />
-        <Tasks />
+        <div className="wrapper">
+          <AddTask />
+        </div>
+        <div className="wrapper">
+          <Tasks />
+        </div>
       </section>
     </div>
   )
