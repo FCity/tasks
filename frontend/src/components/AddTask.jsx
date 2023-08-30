@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { FaPaperPlane } from 'react-icons/fa'
 import { addTask } from '../slices/taskSlice'
 
 const AddTask = () => {
@@ -23,10 +24,12 @@ const AddTask = () => {
             type="text"
             className='form-control'
             value={task}
-            placeholder='Set a task'
+            placeholder='Add a task'
             onChange={e => setTask(e.target.value)}
           />
-          <button className='btn btn-dark' onClick={submitHandler}>Add Task</button>
+          <button className='btn btn-dark' onClick={submitHandler}>
+            <FaPaperPlane />
+          </button>
         </div>
       </form>
     </div>
