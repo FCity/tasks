@@ -16,18 +16,20 @@ const AddTask = () => {
   }
 
   return (
-    <form>
-      <div className="input-group">
-        <input
-          type="text"
-          className='form-control'
-          value={task}
-          placeholder='Set a task'
-          onChange={e => setTask(e.target.value)}
-        />
-        <button className='btn btn-primary' onClick={submitHandler}>Add Task</button>
-      </div>
-    </form>
+    <div className="container">
+      <form className='my-4'>
+        <div className="input-group">
+          <input
+            type="text"
+            className='form-control'
+            value={task}
+            placeholder='Set a task'
+            onChange={e => setTask(e.target.value)}
+          />
+          <button className='btn btn-dark' onClick={submitHandler}>Add Task</button>
+        </div>
+      </form>
+    </div>
   )
 }
 export default AddTask
