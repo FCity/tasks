@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/https://fcity.github.io/tasks',
+  base: '/https://github.com/FCity/tasks',
   plugins: [react()],
   server: {
     port: 3000,
