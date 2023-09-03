@@ -1,7 +1,7 @@
-import { useState, useReducer } from 'react'
+import { useState, useReducer, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { FaEdit, FaTrash, FaPaperPlane } from 'react-icons/fa'
-import { removeTask, editTask, completeTask } from '../slices/taskSlice'
+import { updateTask, deleteTask } from '../slices/taskSlice'
 
 const Task = ({ task, index }) => {
   const [newTask, setNewTask] = useState(task.task)
@@ -10,18 +10,21 @@ const Task = ({ task, index }) => {
 
   const dispatch = useDispatch()
 
-  const removeTaskHandler = () => {
-    dispatch(removeTask(index))
+  useEffect(() => {
+    dispatch(updateTask({ index, newTask, taskCompleted }))
+  }, [taskCompleted])
+
+  const updateTaskHandler = () => {
+    dispatch(updateTask({ index, newTask, taskCompleted }))
+    toggle()
   }
 
   const completedTaskHandler = () => {
     setTaskCompleted(prevVal => !prevVal)
-    dispatch(completeTask({ newTask, index }))
   }
 
-  const editTaskHandler = () => {
-    dispatch(editTask({ newTask, index }))
-    toggle()
+  const deleteTaskHandler = () => {
+    dispatch(deleteTask(index))
   }
 
   return (
@@ -36,7 +39,7 @@ const Task = ({ task, index }) => {
               placeholder='Edit Task'
               onChange={e => setNewTask(e.target.value)}
             />
-            <button className='btn btn-dark' onClick={editTaskHandler}>
+            <button className='btn btn-dark' onClick={updateTaskHandler}>
               <FaPaperPlane />
             </button>
           </div>
@@ -56,7 +59,7 @@ const Task = ({ task, index }) => {
         <button className='btn btn-primary' onClick={toggle}>
           <FaEdit />
         </button>
-        <button className='btn btn-danger' onClick={removeTaskHandler}>
+        <button className='btn btn-danger' onClick={deleteTaskHandler}>
           <FaTrash />
         </button>
       </div>

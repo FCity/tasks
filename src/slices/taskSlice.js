@@ -24,18 +24,15 @@ const taskSlice = createSlice({
     addTask: (state, action) => {
       state.tasks.push({ task: action.payload, completed: false })
     },
-    removeTask: (state, action) => {
+    deleteTask: (state, action) => {
       state.tasks.splice(action.payload, 1)
     },
-    editTask: (state, action) => {
-      state.tasks.splice(action.payload.index, 1, { task: action.payload.newTask, completed: false })
-    },
-    completeTask: (state, action) => {
-      state.tasks.splice(action.payload.index, 1, { task: action.payload.newTask, completed: true })
+    updateTask: (state, action) => {
+      state.tasks.splice(action.payload.index, 1, { task: action.payload.newTask, completed: action.payload.taskCompleted })
     }
   }
 })
 
-export const { addTask, removeTask, editTask, completeTask } = taskSlice.actions
+export const { addTask, updateTask, deleteTask } = taskSlice.actions
 
 export default taskSlice.reducer
